@@ -1,0 +1,60 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="titulo">Agendar Consulta</ui:define>
+	
+	<ui:define name="corpo">
+		<h:form id="frmAgendarConsulta" style="margin-top: 30px; height: 410px">
+			<h1 style="margin-top: 30px">Agendar Consulta</h1>
+			
+			<p:toolbar style="margin-top:10px">
+				<p:toolbarGroup>
+				<p:button value="Nova" icon="ui-icon-plusthick" outcome="/consulta/AgendarConsulta.xhtml"/>
+				<p:commandButton value="Agendar" id="btnSalvar" icon="ui-icon-note"/>
+				</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisa" icon="ui-icon-search" outcome="/consulta/BuscarConsultas.xhtml"/>
+				<p:button value="Adiconar Cliente" icon="ui-icon-plusthick" outcome="/clientes/CadCliente.xhtml"/>
+			</p:toolbarGroup>
+			</p:toolbar>
+			
+			<p:growl autoUpdate="true" life="10000"/>
+			<p:panelGrid columns="2" id="painelProd" style="width: 100%;"
+			columnClasses="rotulo, campo">
+				
+				<p:outputLabel value="Médico Veterinário" for="cbMedico"/>
+            	<p:selectOneMenu id="cbMedico" value="#{selectOneMenuView.console}" style="width: 285px" required="true">
+            	
+            	</p:selectOneMenu>
+            
+				
+				<p:outputLabel value="Cliente" for="cbCliente"/>
+				<p:autoComplete value="#{autoCompleteView.txt1}" id="cbCliente"
+					completeMethod="#{autoCompleteView.completeText}" required="true" size="40"/>
+					
+				<p:outputLabel value="Animal" for="cbAnimal"/>
+				<p:autoComplete value="#{autoCompleteView.txt1}" id="cbAnimal"
+					completeMethod="#{autoCompleteView.completeText}" required="true" size="20"/>
+				
+				<p:outputLabel value="Data da Consulta" for="dtConsulta"/>
+				<p:calendar id="dtConsulta" label="Data Consulta" size="5" required="true"/>
+				
+				<p:outputLabel value="Horário" for="lbHorario"/>
+				<p:inputText id="lbHorario" label="Horário" required="true" size="5" maxlength="5" styleClass="hora"/>
+				
+				<p:outputLabel value="Sintomas Apresentados" for="txtSintomas"/>
+				<p:inputTextarea id="txtSintomas" rows="5" cols="40" />
+				
+				<p:outputLabel value="Valor da Consulta" for="lbValor"/>
+				<p:inputText id="lbValor"/>
+				
+			</p:panelGrid>
+	
+	
+	    </h:form>	
+	 </ui:define>	 
+</ui:composition>

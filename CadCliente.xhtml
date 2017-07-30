@@ -1,0 +1,59 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<ui:define name="titulo">Cadastro de Cliente</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmClientes1" style="height: 410px;">
+		<h1 style="margin-top: 30px">Novo Cliente</h1>
+		
+		<p:toolbar style="margin-top:10px">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/clientes/CadCliente.xhtml" icon="ui-icon-plusthick"/>
+				<p:commandButton value="Salvar" id="btnSalvar" icon="ui-icon-disk"/>
+			</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button value="Adicionar Pet" outcome="/animais/CadastroAnimais" icon="ui-icon-plusthick"/>
+				<p:button  value="Pesquisar" icon="ui-icon-search" outcome="/clientes/BuscaCliente.xhtml"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+	
+		<p:growl autoUpdate="true" life="10000"/>
+		<p:panelGrid columns="2" style="width: 100%;"
+			columnClasses="rotulo, campo" >
+
+			<p:outputLabel value="Cliente " for="lbNome" />
+			<p:inputText id="lbNome" label="Nome" required="true" size="40" maxlength="50"/>
+
+            <p:outputLabel value="CPF" for="lbCpf" />
+			<p:inputText id="lbCpf" label="CPF" required="true" size="15" maxlength="14"/>
+			
+			<p:outputLabel value="Nascimento" for="lbNascimento"/>
+			<p:calendar id="lbNascimento" label="Nascimento"  size="5" />
+			
+			<p:outputLabel value="Endereço" for="lbEndereco" />
+			<p:inputText id="lbEndereco" label="Endereco" size="40"/>
+				
+			<p:outputLabel value="Cidade" for="lbCidade" />
+			<p:autoComplete id="lbCidade" value="#{autoCompleteView.txt1}"
+				completeMethod="#{autoCompleteView.completeText}" required="true" size="40"/>
+			
+			<p:outputLabel value="Telefone" for="lbTelefone" />
+			<p:inputText id="lbTelefone" label="Telefone"/>
+			
+			<p:outputLabel for="dSexo" value="Sexo"/>
+            <p:selectOneMenu id="dSexo" value="#{selectOneMenuView.console}" style="width:125px" required="true">
+            	<f:selectItem itemLabel="Selecione..." itemValue="" />
+           		<f:selectItem itemLabel="Masculino" itemValue="Sr."/>
+            	<f:selectItem itemLabel="Femino" itemValue="Sra."/>
+            </p:selectOneMenu>
+		</p:panelGrid>
+	  </h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+  <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	<title><ui:insert name="titulo">Vet System</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css"/>
+	<h:outputScript library="js" name="jquery.maskMoney.js"/>
+	<h:outputScript library="js" name="jquery.maskTime.js"/>
+  </h:head>
+	
+  <h:body>
+    <p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda">
+    	<f:facet name="start">
+    		<h:graphicImage library="images" name="loading.gif"/>
+    	</f:facet>
+    	<f:facet name="complete">
+    		<h:outputText value=""/>
+    	</f:facet>
+    </p:ajaxStatus>
+    
+    
+    <header>
+    	<div style="float: left"> 	    
+    		<h:link outcome="/Home.xhml">   		 
+            	<h:graphicImage library="images" name="pet.png" width="170" height="45"/>          	
+    		</h:link>          
+    	</div> 	
+    	
+    	<div style="float: left; margin-left: 200px; size: 10;">
+    		<h:form style="display: inline-block">
+				<p:menubar style="font-size: 18px;">
+					<p:menuitem value="Adicionar" icon="ui-icon-plusthick" outcome="/vendas/AdicionarVendas.xhtml"/>
+					<p:submenu label="Cadastrar">
+						<p:menuitem value="Clientes" outcome="/clientes/CadCliente.xhtml"/>
+						<p:menuitem value="Animais" outcome="/animais/CadastroAnimais.xhtml"/>
+						<p:menuitem value="Funcionários" outcome="/funcionarios/Funcionario.xhtml"/>
+						<p:menuitem value="Serviços" outcome="/servicos/CadServicos.xhtml"/>
+						<p:menuitem value="Produtos" outcome="/produtos/CadProdutos.xhtml"/>
+					</p:submenu>
+					<p:submenu label="Pesquisar">
+						<p:menuitem value="Clientes" outcome="/clientes/BuscaCliente.xhtml"/>	
+						<p:menuitem value="Animais" outcome="/animais/BuscarAnimais.xhtml"/>
+						<p:menuitem value="Funcionários" outcome="/funcionarios/BuscarFuncionarios.xhtml"/>
+						<p:submenu label="Serviços">
+							<p:menuitem value="Cadastrados" outcome="/servicos/BuscarServicos.xhtml"/>
+							<p:menuitem value="Finalizados"/>
+							<p:menuitem value="Pendentes"/>
+						</p:submenu>
+						<p:menuitem value="Produtos" outcome="/produtos/BuscarProdutos.xhtml"/>
+					</p:submenu>
+					<p:submenu label="Serviços">
+						<p:menuitem value="Agendar"/>
+						<p:menuitem value="Adicionar" outcome="/vendas/AdicionarVendas.xhtml"/>
+						<p:menuitem value="Finalizar Serviço" outcome="/servicos/FinalizarServico.xhtml"/>
+					</p:submenu>
+					<p:submenu label="Consultas">
+						<p:menuitem value="Agendar" outcome="/consulta/AgendarConsulta.xhtml"/>
+						<p:menuitem value="Consultas Agendadas" outcome="/consulta/BuscarConsultas.xhtml"/>
+					</p:submenu>
+					<p:submenu label="Relatórios">
+						<p:submenu label="Consultas">
+							<p:menuitem value="Realizadas"/>
+							<p:menuitem value="Canceladas"/>
+						</p:submenu>	
+						<p:submenu label="Produtos">
+							<p:menuitem value="Vendidos"/>
+							<p:menuitem value="Em Estoque"/>
+							<p:menuitem value="Em Falta"/>
+							<p:menuitem value="Recebidos"/>
+						</p:submenu>
+						<p:submenu label="Serviços">
+							<p:menuitem value="Efetuados"/>
+							<p:menuitem value="Agendados"/>
+						</p:submenu>
+						<p:submenu label="Clientes">
+							<p:menuitem value="Cadastrados"/>
+							<p:menuitem value="Devedores"/>
+							<p:menuitem value="Vips"/>
+						</p:submenu>
+					</p:submenu>
+					<p:menuitem value="Sair"/>								
+				</p:menubar>
+		    </h:form>
+    	</div>
+    	<div style="clear: both"></div>
+    </header> 
+   
+    <div id="conteudo">
+  		<ui:insert name="corpo"/>
+    </div>
+    
+  <p:separator style="margin-top: 120px"></p:separator>
+  
+  <footer>
+  	Sistema Para Gerenciamento de Clínicas Veterinárias
+  	<a href="http://facebook.com" target="_blank">https://www.facebook.com/jhonatas.marques.7</a>
+  </footer>
+  
+  <script>
+  	function configurarMoeda(){
+    	$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
+  	  	}
+
+  		$(document).ready(function(){
+  			configurarMoeda();
+  	     });
+
+	 function configurarHora(){
+		 $(".hora").maskTime("h:s",{ "placeholder": "hh/mm" });
+
+		  $(document).ready(function(){
+			  configurarHora();
+			});
+			  
+		 }
+  </script>
+  
+
+  </h:body>
+</html>
+	

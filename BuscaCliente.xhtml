@@ -1,0 +1,66 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<ui:define name="titulo">Pesquisa de Clientes</ui:define>
+
+	<ui:define name="corpo">
+	<h:form id="frmClientes1">
+		<h1 style="margin-top: 30px">Pesquisa de Clientes</h1>
+		
+		<p:toolbar style="margin-top:10px">
+			<p:toolbarGroup>
+				<p:autoComplete value="#{autoCompleteView.txt1}"
+					completeMethod="#{autoCompleteView.completeText}" required="true" size="40" style="margin-left:20px;"/>
+				<p:commandButton  value="Pesquisar" icon="ui-icon-search"/>
+			</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button value="Novo" outcome="/clientes/CadCliente.xhtml" icon="ui-icon-plusthick"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+	
+		<p:dataTable id="tblCliente" var="cliente"  emptyMessage="Nenhum Cliente Econtrado"
+			paginator="true" rows="10" style="margin-bottom:20px" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+			<p:column headerText="Código" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+
+			<p:column headerText="Cliente" style="text-align: center">
+				<h:outputText value="Jhonatas Marques" />
+			</p:column>
+			
+			<p:column headerText="Telefone" style="text-align: center">
+				<h:outputText value="996801054" />
+			</p:column>
+
+			<p:column headerText="CPF" style="text-align: center">
+				<h:outputText value="413.272.088.81" />
+			</p:column>
+
+			<p:column headerText="Endereço" style="text-align: center">
+				<h:outputText value="Rua Gaspar Ricardo" />
+			</p:column>
+			
+			<p:column headerText="Cidade" style="text-align: center">
+				<h:outputText value="Cândido Mota - sp" />
+			</p:column>
+			
+			<p:column headerText="Nascimento" style="text-align: center">
+				<h:outputText value="10/01/1992" />
+			</p:column>
+			
+			<p:column style=" width:100px; text-align: center">
+				<p:button icon="ui-icon-pencil" title="Editar"/>
+				<p:commandButton icon="ui-icon-trash" title="Excluir"/>
+			</p:column>
+				
+		</p:dataTable>
+
+	</h:form>
+	</ui:define>
+</ui:composition>

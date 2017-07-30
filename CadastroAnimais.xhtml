@@ -1,0 +1,64 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<ui:define name="titulo">Cadastro de Animais</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmAnimais" style=" height: 410px">
+		<h1 style="margin-top: 30px">Novo Animal</h1>		
+		<p:toolbar style="margin-top:10px">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/animais/CadastroAnimais" icon="ui-icon-plusthick"/>
+				<p:commandButton value="Salvar" id="btnSalvar" icon="ui-icon-disk"/>
+			</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisa" icon="ui-icon-search" outcome="/animais/BuscarAnimais.xhtml"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+		<p:growl autoUpdate="true" life="10000" />		
+		<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+			columnClasses="rotulo, campo">
+			
+			<p:outputLabel for="txtProp" value="Propietário"/>
+			<p:inputText id="txtProp" size="40" maxlength="50" required="true"/>
+			
+			<p:outputLabel value="Código"/>
+			<p:inputText id="txtCod" size="15" maxlength="20"/>
+			
+			<p:outputLabel value="Animal" for="dAnimal" />
+            <p:autoComplete id="dAnimal" dropdown="true" value="#{autoCompleteView.txt6}" 
+            completeMethod="#{autoCompleteView.completeText}" required="true"/>
+ 
+			<p:outputLabel value="Nome do Animal"/>
+			<p:inputText id="txtNome" size="40" maxlength="50" required="true" label="Nome do Animal"/>
+			
+			<p:outputLabel value="Raça"/>
+			<p:inputText id="txtRaca" size="40" maxlength="50" required="true" label="Raça"/>
+			
+			<p:outputLabel for="dSexo" value="Sexo" />
+            <p:selectOneMenu id="dSexo" value="#{selectOneMenuView.console}" style="width:125px">
+            <f:selectItem itemLabel="Selecione..." itemValue="" />
+            <f:selectItem itemLabel="Macho" itemValue="Macho"/>
+            <f:selectItem itemLabel="Fêmea" itemValue="Femea"/>
+            </p:selectOneMenu>
+                       
+            <p:outputLabel value="Idade"/>
+            
+            <h:panelGrid columns="2">	
+				<p:inputText id="txtIdade" size="2" maxlength="4"/>
+           		<p:selectOneMenu value="#{selectOneMenuView.console}" style="width:73px">
+            		<f:selectItem itemLabel="Selecione..." itemValue="" />
+            		<f:selectItem itemLabel="Anos" itemValue="Anos"/>
+            		<f:selectItem itemLabel="Meses" itemValue="Meses"/>
+                </p:selectOneMenu>
+		    </h:panelGrid>
+		</p:panelGrid>
+	</h:form>
+	</ui:define>
+</ui:composition>

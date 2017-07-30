@@ -1,0 +1,66 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<ui:define name="titulo">Pesquisa de Animais</ui:define>
+
+	<ui:define name="corpo">
+	<h:form id="frmBuscAnimal">
+		<h1 style="margin-top: 60px">Pesquisar Animais</h1>
+		
+		<p:toolbar style="margin-top:10px">
+			<p:toolbarGroup>
+			   <p:autoComplete value="#{autoCompleteView.txt1}"
+					completeMethod="#{autoCompleteView.completeText}" required="true" size="40" style="margin-left:20px;"/>
+				<p:commandButton  value="Pesquisar" icon="ui-icon-search"/>
+			</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button value="Novo" outcome="/animais/CadastroAnimais" icon="ui-icon-plusthick"/>		
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+		<p:dataTable id="tblAnimal" var="animal"  emptyMessage="Nenhum Animal Econtrado"
+			paginator="true" rows="10" style="margin-bottom:20px" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+			<p:column headerText="Código" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+
+			<p:column headerText="Propietário" style="text-align: center">
+				<h:outputText value="Jhonatas Marques" />
+			</p:column>
+			
+			<p:column headerText="Animal" style="text-align: center">
+				<h:outputText value="Cachorro" />
+			</p:column>
+
+			<p:column headerText="Nome" style="text-align: center">
+				<h:outputText value="Duck" />
+			</p:column>
+
+			<p:column headerText="Raça" style="text-align: center">
+				<h:outputText value="Labrador" />
+			</p:column>
+			
+			<p:column headerText="Sexo" style="text-align: center">
+				<h:outputText value="Masculino" />
+			</p:column>
+			
+			<p:column headerText="Idade" style="text-align: center">
+				<h:outputText value="2 anos" />
+			</p:column>
+			
+			<p:column style=" width:100px; text-align: center">
+				<p:button icon="ui-icon-pencil" title="Editar"/>
+				<p:commandButton icon="ui-icon-trash" title="Excluir"/>
+			</p:column>
+				
+		</p:dataTable>
+
+	</h:form>	
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,47 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<ui:define name="titulo">Cadastro de Serviços</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmServicos" style="margin-top: 100px; height: 330px">
+		<h1 style="margin-top: 30px">Novo Serviço</h1>
+		
+		<p:toolbar style="margin-top:10px">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/servicos/CadServicos.xhtml" icon="ui-icon-plusthick"/>
+				<p:commandButton value="Salvar" id="btnSalvar" icon="ui-icon-disk"/>
+			</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button  value="Pesquisar" icon="ui-icon-search" outcome="/servicos/BuscarServicos.xhtml"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+	
+		<p:growl autoUpdate="true" life="10000" />
+		<p:panelGrid columns="2" style="width: 100%;"
+			columnClasses="rotulo, campo">
+
+			<p:outputLabel value="Descrição do Serviço" for="lbServico" />
+			<p:inputText id="lbServico" label="Serviço" required="true" size="40" maxlength="50"/>
+			
+			
+			<p:outputLabel for="dResponsavel" value="Responsável"/>
+            <p:selectOneMenu id="dResponsavel" value="#{selectOneMenuView.console}" style="width:125px" required="true">
+            <f:selectItem itemLabel="Selecione..." itemValue="" />
+            <f:selectItem itemLabel="Médico Veterinário" itemValue="Medico Veterinário"/>
+            <f:selectItem itemLabel="Funcionários" itemValue="Funcionários"/>
+            </p:selectOneMenu>
+			
+			<p:outputLabel value="Valor do Serviço"/>
+			<p:inputText id="txtValor" size="10" styleClass="moeda"/>
+				
+		</p:panelGrid>
+	  </h:form>
+	</ui:define>
+</ui:composition>

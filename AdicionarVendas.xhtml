@@ -1,0 +1,105 @@
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<ui:define name="titulo">Adicionar Serviços Efetuados</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmServicos" style="margin-top: 10px; height: 330px">
+		<h1 style="margin-top: 30px">Adicionar Serviços Efetuados</h1>
+		
+		<p:toolbar style="margin-top:10px">
+			<p:toolbarGroup>
+				<p:button value="Nova" outcome="/vendas/AdicionarVendas.xhtml" icon="ui-icon-plusthick"/>
+				<p:commandButton value="Salvar" id="btnSalvar" icon="ui-icon-disk"/>
+			</p:toolbarGroup>	    
+			<p:toolbarGroup align="right">
+				<p:button value="Finalizar" icon="ui-icon-check" outcome="/servicos/FinalizarServico.xhtml"/>
+				<p:button  value="Pesquisar" icon="ui-icon-search" outcome="/servicos/BuscarServicos.xhtml"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+	
+		<p:growl autoUpdate="true" life="10000"/>
+		<p:panelGrid columns="2" style="width: 100%;"
+			columnClasses="rotulo, campo">
+
+			<p:outputLabel value="Cliente" for="lbCliente" />
+			<p:autoComplete id="lbCliente" value="#{autoCompleteView.txt1}"
+				completeMethod="#{autoCompleteView.completeText}" required="true" size="40"/>
+				
+			<p:outputLabel for="dAnimal" value="Nome do Animal"/>
+            <p:selectOneMenu id="dAnimal" value="#{selectOneMenuView.console}" style="width:125px" required="true">
+            <f:selectItem itemLabel="Selecione..." itemValue="" />
+            </p:selectOneMenu>
+            
+            <p:outputLabel for="dFunc" value="Funcionário"/>
+            <p:selectOneMenu id="dFunc" value="#{selectOneMenuView.console}" style="width:125px" required="true">
+            <f:selectItem itemLabel="Selecione..." itemValue="" />
+            </p:selectOneMenu>
+		</p:panelGrid>
+		
+		<p:commandButton value="Adicionar Produtos e Serviços" type="button" onclick="PF('dlg2').show();"  
+			style="margin-top: 30px; width: 200px; height: 40px" />
+		
+		<p:dataTable id="tblCliente" var="cliente"  emptyMessage="Adicione Produtos ou Serviços"
+			paginator="true" rows="10" style="margin-bottom:20px; margin-top: 10px" paginatorAlwaysVisible="false" paginatorPosition="bottom">>
+		
+			<p:column headerText="Código" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+			
+			<p:column headerText="Descrição" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+			
+			<p:column headerText="Valor" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+			
+			<p:column headerText="Quantidade" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+			
+			<p:column headerText="Total" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+			
+			<p:column headerText="Data" style="text-align: center">
+				<h:outputText value="1" />
+			</p:column>
+		</p:dataTable>
+	
+		<p:dialog header="Adicionar Produtos e Serviços" widgetVar="dlg2" modal="true" height="200" width="600">
+    		<p:panelGrid columns="4" style="width: 100%;">
+    			
+    			<p:outputLabel value="Produto" for="lbProduto" />
+				<p:autoComplete id="lbProduto" value="#{autoCompleteView.txt1}"
+					completeMethod="#{autoCompleteView.completeText}" size="40"/>
+				
+				<p:outputLabel value="QTD" for="lbQuantProd"/>
+				<p:inputNumber id="lbQuantProd" size="2"/>
+           		
+           		<p:outputLabel value="Serviço" for="lbServico" />
+				<p:autoComplete id="lbServico" value="#{autoCompleteView.txt1}"
+					completeMethod="#{autoCompleteView.completeText}" size="40"/>
+				
+				<p:outputLabel value="QTD" for="lbQuantServ"/>
+				<p:inputNumber id="lbQuantServ" size="2"/>
+            	
+            	<p:outputLabel value="Data" for="lbData"/>
+				<p:calendar id="lbData" size="5"/>
+    		</p:panelGrid>
+    		
+    		<p:commandButton value="Adicionar" style="margin-top: 30px;"/>
+		</p:dialog>   
+	
+	  </h:form>
+	  
+   		
+	</ui:define>
+</ui:composition>
